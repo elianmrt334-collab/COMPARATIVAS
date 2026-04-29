@@ -21,11 +21,10 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* Cambiado a tu azul corporativo */
+            /* Texto en azul corporativo */
             color: var(--primary);
             min-height: 100vh;
             padding: 2rem 1rem;
-            overflow-x: hidden;
         }
 
         .main-card {
@@ -57,7 +56,6 @@
             transition: all 0.3s ease;
             cursor: default;
         }
-        /* Movimiento interactivo en los puntos clave */
         .check-item:hover {
             transform: translateX(10px);
             border-color: var(--secondary);
@@ -74,9 +72,8 @@
         }
         .nav-link:hover { color: var(--secondary); transform: scale(1.05); }
 
-        /* Animaciones de entrada */
-        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-in { animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-in { animation: slideIn 0.6s ease-out forwards; }
 
         .nav-btn {
             background: var(--primary);
@@ -96,33 +93,51 @@
             box-shadow: 0 4px 12px rgba(21, 142, 69, 0.3);
         }
 
-        /* Movimiento en los cuadros de activos */
+        /* INTERACTIVIDAD EN RECURSOS DE STOCK */
         .asset-box {
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            user-select: none;
         }
         .asset-box:hover {
             transform: translateY(-5px);
-            background-color: var(--primary);
-            color: white !important;
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(23, 46, 89, 0.05);
         }
-        .asset-box:hover i { color: white !important; }
+        .asset-box.selected {
+            background-color: var(--primary) !important;
+            color: white !important;
+            transform: scale(1.05);
+        }
+        .asset-box.selected i { color: white !important; }
 
-        /* Ajuste de color para la conclusión */
         .conclusion-box {
-            background: var(--primary);
-            /* Texto en azul claro o blanco para que sea legible, 
-               pero si pediste azul sobre blanco, aquí lo aplico: */
             background: rgba(23, 46, 89, 0.05);
             border: 2px solid var(--primary);
             color: var(--primary);
+            padding: 2.5rem;
+            border-radius: 2rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            transition: all 0.3s ease;
+        }
+        .conclusion-box:hover {
+            background: rgba(23, 46, 89, 0.08);
+        }
+
+        .glass-container {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(15px);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
         }
     </style>
 </head>
-<body class="p-4 md:p-8 lg:p-12 flex items-center justify-center">
+<body class="p-4 md:p-8 lg:p-12">
 
     <div class="max-w-7xl mx-auto glass-container p-6 md:p-12 shadow-2xl animate-fade">
 
-        <!-- NAVEGACIÓN ENTRE DASHBOARDS -->
+        <!-- NAVEGACIÓN -->
         <div class="flex justify-end mb-6">
             <a href="index.html" class="nav-btn flex items-center gap-2">
                 <i class="fa-solid fa-arrow-left"></i> Regresar al reporte completo
@@ -130,7 +145,7 @@
         </div>
 
         <div class="main-card animate-in">
-            <!-- Cabecera simple con Logo Coosajo -->
+            <!-- Cabecera Logo Coosajo -->
             <div class="flex flex-col md:flex-row justify-between items-center mb-12 border-b pb-8 border-slate-100 gap-6">
                 <img src="LOGO COOSAJO SIN ESLOGAN.png" alt="Logo Coosajo" class="h-16 w-auto transition-transform hover:scale-105">
                 <div class="text-center md:text-right">
@@ -139,10 +154,9 @@
                 </div>
             </div>
 
-            <!-- El Gran Dilema: 10 Usuarios -->
+            <!-- Comparativa Problema vs Solución -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-                <!-- Columna Problema -->
-                <div class="bg-red-50/50 p-8 rounded-[2.5rem] border border-red-100 transition-all hover:shadow-inner">
+                <div class="bg-red-50/50 p-8 rounded-[2.5rem] border border-red-100 transition-all">
                     <div class="flex items-center gap-4 mb-6">
                         <div class="logo-frame"><img src="Flat-logo-envato-Clipart-PNG.png" class="w-10 h-10 object-contain"></div>
                         <h2 class="text-xl font-black text-red-700">Limitaciones Actuales</h2>
@@ -156,14 +170,9 @@
                             <i class="fa-solid fa-robot text-red-500 text-xl"></i>
                             <p class="text-sm font-bold">Sin Inteligencia Artificial para mejorar fotos o crear contenido.</p>
                         </div>
-                        <div class="check-item border-red-200">
-                            <i class="fa-solid fa-clock text-red-500 text-xl"></i>
-                            <p class="text-sm font-bold">Inversión de $447/año desperdiciada en tiempos de espera.</p>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Columna Solución -->
                 <div class="bg-green-50/50 p-8 rounded-[2.5rem] border-4 border-green-100 transition-all hover:shadow-lg">
                     <div class="flex items-center gap-4 mb-6">
                         <div class="logo-frame"><img src="web_260429_magnific-1200x670.png" class="magnific-crop"></div>
@@ -176,42 +185,49 @@
                         </div>
                         <div class="check-item border-green-200">
                             <i class="fa-solid fa-wand-magic-sparkles text-green-600 text-xl"></i>
-                            <p class="text-sm font-bold">IA de nivel mundial: Mejora fotos a 8K y genera videos únicos.</p>
-                        </div>
-                        <div class="check-item border-green-200">
-                            <i class="fa-solid fa-rotate text-green-600 text-xl"></i>
-                            <p class="text-sm font-bold">Créditos de IA que se recargan GRATIS cada mes.</p>
+                            <p class="text-sm font-bold">IA Pro: Genera contenido ilimitado y mejora fotos a 8K.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Inventario Visual de Beneficios -->
+            <!-- RECURSOS INTERACTIVOS (Haz clic para seleccionar) -->
             <div class="bg-slate-50 p-8 rounded-[2.5rem] mb-10">
-                <h3 class="text-center font-black uppercase text-xs text-slate-400 tracking-[0.3em] mb-8">Catálogo Completo Unificado</h3>
+                <h3 class="text-center font-black uppercase text-xs text-slate-400 tracking-[0.3em] mb-8">Catálogo Unificado (Haz clic para marcar)</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                    <div class="p-4 bg-white rounded-2xl shadow-sm asset-box"><i class="fa-solid fa-image text-green-600 mb-2"></i><p class="text-[10px] font-black uppercase">Fotos & Vectores</p></div>
-                    <div class="p-4 bg-white rounded-2xl shadow-sm asset-box"><i class="fa-solid fa-music text-green-600 mb-2"></i><p class="text-[10px] font-black uppercase">Música & SFX</p></div>
-                    <div class="p-4 bg-white rounded-2xl shadow-sm asset-box"><i class="fa-solid fa-cube text-green-600 mb-2"></i><p class="text-[10px] font-black uppercase">Modelos 3D</p></div>
-                    <div class="p-4 bg-white rounded-2xl shadow-sm asset-box"><i class="fa-solid fa-font text-green-600 mb-2"></i><p class="text-[10px] font-black uppercase">Fuentes & Mockups</p></div>
+                    <div class="p-4 bg-white rounded-2xl shadow-sm asset-box" onclick="this.classList.toggle('selected')">
+                        <i class="fa-solid fa-image text-green-600 mb-2 transition-colors"></i>
+                        <p class="text-[10px] font-black uppercase">Fotos & Vectores</p>
+                    </div>
+                    <div class="p-4 bg-white rounded-2xl shadow-sm asset-box" onclick="this.classList.toggle('selected')">
+                        <i class="fa-solid fa-music text-green-600 mb-2 transition-colors"></i>
+                        <p class="text-[10px] font-black uppercase">Música & SFX</p>
+                    </div>
+                    <div class="p-4 bg-white rounded-2xl shadow-sm asset-box" onclick="this.classList.toggle('selected')">
+                        <i class="fa-solid fa-cube text-green-600 mb-2 transition-colors"></i>
+                        <p class="text-[10px] font-black uppercase">Modelos 3D</p>
+                    </div>
+                    <div class="p-4 bg-white rounded-2xl shadow-sm asset-box" onclick="this.classList.toggle('selected')">
+                        <i class="fa-solid fa-font text-green-600 mb-2 transition-colors"></i>
+                        <p class="text-[10px] font-black uppercase">Fuentes & Mockups</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Conclusión Ejecutiva (Texto Azul sobre fondo muy claro) -->
-            <div class="conclusion-box p-8 rounded-[2rem] text-center shadow-sm mb-10">
+            <!-- CONCLUSIÓN SOBRE VARIEDAD DE CONTENIDO -->
+            <div class="conclusion-box">
                 <p class="text-2xl font-black italic">
-                    "Magnific no es solo un repositorio, es la herramienta que elevará la calidad visual de COOSAJO R.L. a nivel global sin bloqueos técnicos."
+                    "La migración a Magnific rompe la dependencia del stock estático, desbloqueando una variación de contenido infinita que permite a COOSAJO R.L. diversificar su comunicación visual con agilidad y superioridad técnica."
                 </p>
             </div>
 
-            <!-- Pie de Página y Navegación -->
             <div class="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-slate-100 gap-4">
                 <div class="flex gap-4">
                     <span class="badge-info bg-blue-100 text-primary">Inversión Inteligente</span>
                     <span class="badge-info bg-green-100 text-secondary">Aprobación Recomendada</span>
                 </div>
                 <a href="index.html" class="nav-link flex items-center gap-2">
-                    <i class="fa-solid fa-circle-nodes"></i> Ir al Análisis Técnico Detallado
+                    <i class="fa-solid fa-circle-nodes"></i> Ver Análisis Técnico Detallado
                 </a>
             </div>
         </div>
