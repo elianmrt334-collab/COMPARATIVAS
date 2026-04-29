@@ -3,28 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análisis Técnico 2026: COOSAJO R.L.</title>
+    <title>Resumen Ejecutivo 2026: COOSAJO R.L.</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap');
         
         :root {
             --primary: #172e59;
             --secondary: #158e45;
-            --bg-light: #ffffff;
-            --text-main: #1e293b;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
+            background-color: #ffffff;
             background-image: url('ombre-gray-layer-patterned-background-2026-03-18-11-53-18-utc (1).jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            color: var(--text-main);
+            /* Todo el texto principal en azul corporativo */
+            color: var(--primary);
             min-height: 100vh;
+            padding: 2rem 1rem;
+            overflow-x: hidden;
         }
 
         .glass-container {
@@ -34,292 +35,231 @@
             border: 1px solid rgba(255, 255, 255, 0.6);
         }
 
-        .card-shadow {
-            box-shadow: 0 10px 30px rgba(23, 46, 89, 0.05);
+        .main-card {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-radius: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .logo-frame {
+            width: 60px; height: 60px; border-radius: 12px; overflow: hidden;
+            background: #f8fafc; border: 1px solid #f1f5f9; display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .magnific-crop {
+            width: 100%; height: 100%; object-fit: cover; object-position: 88% center; transform: scale(1.4);
+        }
+
+        .check-item {
+            background: white; border: 1px solid #f1f5f9; padding: 1rem; border-radius: 1rem;
+            display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+        .check-item:hover {
+            transform: translateX(8px);
+            border-color: var(--secondary);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        /* INTERACTIVIDAD EN RECURSOS DE STOCK */
+        .asset-box {
             background: white;
-            border: 1px solid rgba(23, 46, 89, 0.08);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .asset-box:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 25px -5px rgba(23, 46, 89, 0.1);
+        }
+
+        /* Estado seleccionado interactivo */
+        .asset-box.selected {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: white !important;
+        }
+        
+        .asset-box.selected i, .asset-box.selected p {
+            color: white !important;
+        }
+
+        .asset-box .check-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--secondary);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            opacity: 0;
+            transform: scale(0);
             transition: all 0.3s ease;
         }
 
-        .tab-active {
-            border-bottom: 4px solid var(--secondary);
+        .asset-box.selected .check-badge {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Botón de navegación - Texto ahora en azul sobre fondo claro para cumplir con tu petición */
+        .nav-btn {
+            background: rgba(23, 46, 89, 0.1);
             color: var(--primary) !important;
-            font-weight: 900;
-        }
-
-        .progress-bar {
-            height: 14px;
-            border-radius: 7px;
-            background: #e2e8f0;
-            overflow: hidden;
-        }
-
-        .progress-fill-primary { height: 100%; background-color: var(--primary); border-radius: 7px; }
-        .progress-fill-secondary { height: 100%; background-color: var(--secondary); border-radius: 7px; }
-        .progress-fill-warning { height: 100%; background-color: #ef4444; border-radius: 7px; }
-
-        .resource-grid-item {
-            background: white;
-            border: 1px solid #e2e8f0;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 1.25rem;
-            display: flex;
-            flex-direction: column;
+            padding: 0.6rem 1.5rem;
+            border-radius: 0.8rem;
+            font-weight: 800;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            cursor: pointer;
+            border: 2px solid var(--primary);
         }
-        
-        .resource-grid-item.selected {
-            border-color: var(--secondary);
-            background-color: rgba(21, 142, 69, 0.08);
-            box-shadow: 0 0 0 4px rgba(21, 142, 69, 0.1);
-        }
-
-        .resource-icon { width: 42px; height: 42px; margin-bottom: 0.75rem; color: var(--secondary); }
-
-        .logo-frame {
-            width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;
-            overflow: hidden; border-radius: 1rem; background: #f8fafc; border: 1px solid #f1f5f9;
-        }
-
-        .magnific-crop { width: 100%; height: 100%; object-fit: cover; object-position: 88% center; transform: scale(1.4); }
-
-        .nav-btn {
+        .nav-btn:hover {
             background: var(--primary);
-            color: white;
-            padding: 0.5rem 1.25rem;
-            border-radius: 0.75rem;
-            font-weight: 700;
-            font-size: 0.8rem;
-            transition: all 0.3s;
+            color: white !important;
+            transform: translateY(-2px);
         }
-        .nav-btn:hover { background: var(--secondary); transform: translateY(-2px); }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade { animation: fadeIn 0.5s ease-out forwards; }
+        .conclusion-box {
+            background: rgba(23, 46, 89, 0.03);
+            border: 2px solid var(--primary);
+            padding: 2.5rem;
+            border-radius: 2rem;
+            margin-bottom: 2.5rem;
+            transition: all 0.3s ease;
+        }
 
-        .nav-btn {
-    background: var(--primary);
-    color: white;
-    padding: 0.5rem 1.25rem;
-    border-radius: 0.75rem;
-    font-weight: 700;
-    font-size: 0.8rem;
-    transition: all 0.3s;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-}
-.nav-btn:hover { 
-    background: var(--secondary); 
-    transform: translateY(-2px); 
-}
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade { animation: fadeIn 0.8s ease-out forwards; }
 
+        h1, h2, h3, h4, p, span, i { color: var(--primary); }
+        .text-red-700 { color: #b91c1c !important; }
+        .text-green-700 { color: #158e45 !important; }
+        .text-slate-400 { color: #64748b !important; }
+        .text-green-600 { color: var(--secondary) !important; }
     </style>
 </head>
 <body class="p-4 md:p-8 lg:p-12">
 
     <div class="max-w-7xl mx-auto glass-container p-6 md:p-12 shadow-2xl animate-fade">
-        
-        <!-- NAVEGACIÓN ENTRE DASHBOARDS -->
-<div class="flex justify-end mb-6">
-    <a href="dashboard.html" class="nav-btn flex items-center gap-2">
-        <i class="fa-solid fa-eye"></i> Ver Resumen Ejecutivo (Simple)
-    </a>
-</div>
 
-        <!-- HEADER CORPORATIVO -->
-        <header class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-12 border-b pb-10 border-slate-200/60 gap-8">
-            <div class="flex flex-col sm:flex-row items-center gap-8 text-center sm:text-left">
-                <div class="bg-white p-3 rounded-xl shadow-sm border border-slate-100 min-w-[240px]">
-                    <img src="LOGO COOSAJO SIN ESLOGAN.png" alt="COOSAJO R.L." class="h-16 w-auto object-contain mx-auto">
-                </div>
-                <div class="h-16 w-[2px] bg-slate-200 hidden sm:block"></div>
-                <div>
-                    <h1 class="text-4xl md:text-5xl font-black tracking-tighter" style="color: var(--primary)">
-                        Análisis <span class="font-light text-slate-400">Técnico</span>
-                    </h1>
-                    <p class="text-slate-500 mt-2 text-lg font-semibold tracking-tight uppercase">Selección de Activos Multimedia</p>
-                </div>
-            </div>
-            
-            <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4 flex-1">
-                    <div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-primary text-xl">
-                        <i class="fa-solid fa-file-invoice-dollar"></i>
-                    </div>
-                    <div>
-                        <p class="text-[11px] uppercase font-black text-slate-400 tracking-widest">Inversión Envato</p>
-                        <p class="text-2xl font-black" style="color: var(--primary)">$447 <span class="text-xs font-normal text-slate-400">/Año</span></p>
-                    </div>
-                </div>
-                <div class="bg-gradient-to-r from-green-600 to-green-700 p-5 rounded-2xl shadow-lg flex items-center gap-4 text-white flex-1">
-                    <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-rocket"></i>
-                    </div>
-                    <div>
-                        <p class="text-[11px] uppercase font-black text-white/70 tracking-widest">Upgrade Objetivo</p>
-                        <p class="text-2xl font-black">Magnific AI</p>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- PANELES DE COMPARACIÓN -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12">
-            <!-- Envato -->
-            <div class="bg-white rounded-[2.5rem] p-10 card-shadow border-l-[15px]" style="border-left-color: var(--primary)">
-                <div class="flex justify-between items-start mb-10">
-                    <div class="logo-frame shadow-sm">
-                        <img src="Flat-logo-envato-Clipart-PNG.png" alt="Envato" class="w-full h-full object-contain p-2">
-                    </div>
-                    <div class="text-right">
-                        <span class="px-5 py-2 bg-red-50 text-red-600 text-[12px] font-black rounded-full uppercase border border-red-100">Límite: 3 Dispositivos</span>
-                    </div>
-                </div>
-                <h2 class="text-4xl font-black mb-3" style="color: var(--primary)">Envato Elements</h2>
-                <p class="text-slate-500 text-base mb-8 leading-relaxed">Suscripción tradicional con bloqueos constantes por accesos simultáneos excesivos.</p>
-                <div class="space-y-8">
-                    <div>
-                        <div class="flex justify-between text-xs font-black mb-2 uppercase tracking-widest text-slate-400">Variedad de Stock <span class="text-primary font-black text-sm">90%</span></div>
-                        <div class="progress-bar"><div class="progress-fill-primary" style="width: 90%"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between text-xs font-black mb-2 uppercase tracking-widest text-slate-400">Capacidad IA <span class="text-red-500 font-black text-sm">15%</span></div>
-                        <div class="progress-bar"><div class="progress-fill-warning" style="width: 15%"></div></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Magnific -->
-            <div class="bg-white rounded-[2.5rem] p-10 card-shadow border-l-[15px]" style="border-left-color: var(--secondary)">
-                <div class="flex justify-between items-start mb-10">
-                    <div class="logo-frame shadow-sm">
-                        <img src="web_260429_magnific-1200x670.png" alt="Magnific" class="magnific-crop">
-                    </div>
-                    <div class="text-right">
-                        <span class="px-5 py-2 bg-green-50 text-secondary text-[12px] font-black rounded-full uppercase border border-green-100">Eficiencia: Multi-Usuario</span>
-                    </div>
-                </div>
-                <h2 class="text-4xl font-black mb-3" style="color: var(--secondary)">Magnific AI</h2>
-                <p class="text-slate-500 text-base mb-8 leading-relaxed">Ecosistema creativo con IA avanzada. Resultados de nivel mundial sin cierres de sesión.</p>
-                <div class="space-y-8">
-                    <div>
-                        <div class="flex justify-between text-xs font-black mb-2 uppercase tracking-widest text-slate-400">Variedad de Stock <span class="text-secondary font-black text-sm">98%</span></div>
-                        <div class="progress-bar"><div class="progress-fill-secondary" style="width: 98%"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between text-xs font-black mb-2 uppercase tracking-widest text-slate-400">Capacidad IA <span class="text-secondary font-black text-sm">100%</span></div>
-                        <div class="progress-bar"><div class="progress-fill-secondary" style="width: 100%"></div></div>
-                    </div>
-                </div>
-            </div>
+        <!-- NAVEGACIÓN SUPERIOR -->
+        <div class="flex justify-end mb-8">
+            <a href="index.html" class="nav-btn flex items-center gap-2">
+                <i class="fa-solid fa-arrow-left"></i> Regresar al reporte completo
+            </a>
         </div>
 
-        <!-- TABS DE DETALLES -->
-        <div class="bg-white/95 rounded-[3rem] shadow-2xl overflow-hidden mb-12 border border-slate-100">
-            <div class="flex border-b overflow-x-auto bg-slate-50/70">
-                <button onclick="showTab('stock')" id="btn-stock" class="tab-btn px-12 py-7 text-sm font-black uppercase tracking-[0.15em] tab-active">Recursos de Stock</button>
-                <button onclick="showTab('ia')" id="btn-ia" class="tab-btn px-12 py-7 text-sm font-black uppercase tracking-[0.15em] text-slate-400">Motor de IA</button>
-                <button onclick="showTab('teams')" id="btn-teams" class="tab-btn px-12 py-7 text-sm font-black uppercase tracking-[0.15em] text-slate-400">Gestión de Grupo</button>
-                <button onclick="showTab('roi')" id="btn-roi" class="tab-btn px-12 py-7 text-sm font-black uppercase tracking-[0.15em] text-slate-400">Veredicto ROI</button>
+        <div class="main-card">
+            <!-- Cabecera Corporativa -->
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 border-b pb-8 border-slate-100 gap-6">
+                <img src="LOGO COOSAJO SIN ESLOGAN.png" alt="Logo Coosajo" class="h-16 w-auto transition-transform hover:scale-105">
+                <div class="text-center md:text-right">
+                    <h1 class="text-3xl font-black tracking-tighter">Veredicto de Activos 2026</h1>
+                    <p class="text-slate-400 font-bold text-xs uppercase tracking-widest">Resumen Ejecutivo de Decisión</p>
+                </div>
             </div>
 
-            <div id="tab-content" class="p-12">
-                <!-- RECURSOS -->
-                <div id="content-stock" class="animate-fade">
-                    <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4 text-center md:text-left">
-                        <h3 class="text-3xl font-black text-primary">Contenido Verificado</h3>
-                        <div class="flex items-center gap-3 text-xs font-bold text-slate-500 bg-slate-100 px-4 py-2 rounded-full">
-                            <i class="fa-solid fa-clipboard-check text-secondary"></i> Haz clic en los elementos para explorar
-                        </div>
+            <!-- Comparativa de Impacto -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Problema -->
+                <div class="bg-red-50/40 p-8 rounded-[2.5rem] border border-red-100">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="logo-frame shadow-sm"><img src="Flat-logo-envato-Clipart-PNG.png" class="w-10 h-10 object-contain"></div>
+                        <h2 class="text-xl font-black text-red-700">Limitaciones Actuales</h2>
                     </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 text-center">
-                        <div class="resource-grid-item" onclick="this.classList.toggle('selected')">
-                            <svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7L16 2L11 7M3 17L8 22L13 17M12 2L12 22"/><circle cx="12" cy="12" r="3"/></svg>
-                            <p class="text-[11px] font-black uppercase">Vectores</p>
+                    <div class="space-y-4">
+                        <div class="check-item">
+                            <i class="fa-solid fa-users-slash text-red-500 text-xl"></i>
+                            <p class="text-sm font-bold">10 usuarios compartiendo solo 3 accesos (bloqueos).</p>
                         </div>
-                        <div class="resource-grid-item" onclick="this.classList.toggle('selected')">
-                            <svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                            <p class="text-[11px] font-black uppercase">Fotos</p>
-                        </div>
-                        <div class="resource-grid-item" onclick="this.classList.toggle('selected')">
-                            <svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l5 5"/></svg>
-                            <p class="text-[11px] font-black uppercase">Ilustraciones</p>
-                        </div>
-                        <div class="resource-grid-item" onclick="this.classList.toggle('selected')">
-                            <svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                            <p class="text-[11px] font-black uppercase">Plantillas</p>
-                        </div>
-                        <div class="resource-grid-item" onclick="this.classList.toggle('selected')">
-                            <svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6M9 11h6"/></svg>
-                            <p class="text-[11px] font-black uppercase">PSD</p>
-                        </div>
-                        <div class="resource-grid-item" onclick="this.classList.toggle('selected')">
-                            <svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                            <p class="text-[11px] font-black uppercase">Mockups</p>
+                        <div class="check-item">
+                            <i class="fa-solid fa-robot text-red-500 text-xl"></i>
+                            <p class="text-sm font-bold">Sin Inteligencia Artificial avanzada para generación.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- MOTOR IA -->
-                <div id="content-ia" class="hidden animate-fade">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm">
-                        <div class="p-10 border rounded-[2rem] bg-slate-50/50">
-                            <h4 class="font-black text-primary text-2xl mb-8 uppercase tracking-widest">Envato: IA Pasiva</h4>
-                            <p class="leading-relaxed">Limitado a búsquedas inteligentes. No ofrece capacidades de generación ni mejora 8K incluidas.</p>
+                <!-- Solución -->
+                <div class="bg-green-50/40 p-8 rounded-[2.5rem] border-4 border-green-100">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="logo-frame shadow-sm"><img src="web_260429_magnific-1200x670.png" class="magnific-crop"></div>
+                        <h2 class="text-xl font-black text-green-700">Evolución: Magnific AI</h2>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="check-item">
+                            <i class="fa-solid fa-people-group text-green-600 text-xl"></i>
+                            <p class="text-sm font-bold">Acceso simultáneo garantizado para los 10 creativos.</p>
                         </div>
-                        <div class="p-10 border rounded-[2rem] bg-green-50/30 border-green-100">
-                            <h4 class="font-black text-secondary text-2xl mb-8 uppercase tracking-widest">Magnific: IA Activa</h4>
-                            <p class="leading-relaxed">Incluye Magnific Upscaler y modelos regenerativos de última generación con créditos recargables.</p>
+                        <div class="check-item">
+                            <i class="fa-solid fa-wand-magic-sparkles text-green-600 text-xl"></i>
+                            <p class="text-sm font-bold">IA Pro: Mejora fotos a 8K y genera videos únicos.</p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- GESTIÓN TEAM -->
-                <div id="content-teams" class="hidden animate-fade">
-                    <h3 class="text-3xl font-black text-primary mb-6">Optimización para 10 Usuarios</h3>
-                    <p class="text-slate-500 text-lg mb-8 leading-relaxed">Elimina los cuellos de botella del plan actual y unifica el flujo bajo una sola licencia departamental sin límites de acceso IP.</p>
-                </div>
-
-                <!-- ROI -->
-                <div id="content-roi" class="hidden animate-fade">
-                    <div class="p-10 bg-slate-50 rounded-[2.5rem] border border-slate-200">
-                        <h4 class="text-2xl font-black mb-6">Vanguardia Tecnológica y Superioridad Visual</h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
-                            <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4" style="border-top-color: var(--primary)">
-                                <p class="font-bold text-primary mb-3 uppercase">Envato Elements</p>
-                                <p class="text-slate-600 italic">"Enfoque en costo bajo, pero limita el crecimiento técnico del equipo."</p>
-                            </div>
-                            <div class="bg-white p-6 rounded-2xl shadow-sm border-t-4" style="border-top-color: var(--secondary)">
-                                <p class="font-bold text-secondary mb-3 uppercase">Magnific AI</p>
-                                <p class="text-slate-600 italic">"Acceso a herramientas que elevan el estándar visual de COOSAJO R.L. a nivel global."</p>
-                            </div>
-                        </div>
+            <!-- RECURSOS DE STOCK INTERACTIVOS -->
+            <div class="mb-12">
+                <h3 class="text-center font-black uppercase text-xs text-slate-400 tracking-[0.3em] mb-8">Explora el Catálogo Unificado (Haz clic para activar)</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="asset-box" onclick="this.classList.toggle('selected')">
+                        <div class="check-badge"><i class="fa-solid fa-check"></i></div>
+                        <i class="fa-solid fa-image text-green-600 text-2xl mb-3"></i>
+                        <p class="text-[11px] font-black uppercase tracking-tighter">Fotos & Vectores</p>
+                    </div>
+                    <div class="asset-box" onclick="this.classList.toggle('selected')">
+                        <div class="check-badge"><i class="fa-solid fa-check"></i></div>
+                        <i class="fa-solid fa-music text-green-600 text-2xl mb-3"></i>
+                        <p class="text-[11px] font-black uppercase tracking-tighter">Música & SFX</p>
+                    </div>
+                    <div class="asset-box" onclick="this.classList.toggle('selected')">
+                        <div class="check-badge"><i class="fa-solid fa-check"></i></div>
+                        <i class="fa-solid fa-cube text-green-600 text-2xl mb-3"></i>
+                        <p class="text-[11px] font-black uppercase tracking-tighter">Modelos 3D</p>
+                    </div>
+                    <div class="asset-box" onclick="this.classList.toggle('selected')">
+                        <div class="check-badge"><i class="fa-solid fa-check"></i></div>
+                        <i class="fa-solid fa-font text-green-600 text-2xl mb-3"></i>
+                        <p class="text-[11px] font-black uppercase tracking-tighter">Fuentes & Mockups</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- Conclusión Ejecutiva -->
+            <div class="conclusion-box text-center">
+                <p class="text-2xl font-black italic">
+                    "Magnific no es solo un repositorio, es la herramienta que elevará la calidad visual de COOSAJO R.L. a nivel global sin bloqueos técnicos."
+                </p>
+            </div>
+
+            <!-- Footer Informativo -->
+            <div class="flex justify-center items-center pt-8 border-t border-slate-100">
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400">COOSAJO R.L. | Auditoría de Activos 2026</p>
             </div>
         </div>
-
-        <footer class="mt-20 text-center border-t pt-10 border-slate-200">
-            <p class="text-slate-400 text-[11px] font-black uppercase tracking-[0.4em]">COOSAJO R.L. | Auditoría Técnica v11.0 | 2026</p>
-        </footer>
     </div>
 
-    <script>
-        function showTab(tabId) {
-            document.querySelectorAll('#tab-content > div').forEach(div => div.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('tab-active');
-                btn.classList.add('text-slate-400');
-            });
-            document.getElementById('content-' + tabId).classList.remove('hidden');
-            const activeBtn = document.getElementById('btn-' + tabId);
-            activeBtn.classList.add('tab-active');
-            activeBtn.classList.remove('text-slate-400');
-        }
-    </script>
 </body>
 </html>
